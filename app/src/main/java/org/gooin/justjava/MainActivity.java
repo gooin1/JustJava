@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    int quantity = 98;
+    int quantity = 0;
     private static final String TAG = "MainActivity";
 
     @Override
@@ -53,21 +53,23 @@ public class MainActivity extends AppCompatActivity {
 
     //   数量增加 1
     public void increment(View view) {
-        quantity++;
-        if (quantity > 100) {
+
+        if (quantity == 100) {
             Toast.makeText(this, "没有那么多的咖啡啦~", Toast.LENGTH_SHORT).show();
             return ;
         }
+        quantity++;
         displayQuantity(quantity);
     }
 
     //     数量减少 1
     public void decrement(View view) {
-        quantity--;
-        if (quantity < 1) {
+
+        if (quantity == 1) {
             Toast.makeText(this, "至少买一杯哦~", Toast.LENGTH_SHORT).show();
             return ;
         }
+        quantity--;
         displayQuantity(quantity);
 
     }
