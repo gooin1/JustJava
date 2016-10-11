@@ -1,5 +1,7 @@
 package org.gooin.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -45,9 +47,31 @@ public class MainActivity extends AppCompatActivity {
 
 //        计算价格
         int price = calculatePrice(quantity, hasWhippedCream, hasChocolate);
+
 //        调用函数创建订单
         String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, name);
+
+//        在屏幕上显示订单信息
         displayMessage(priceMessage);
+
+
+//        通过 Email 发送订单信息
+
+        String subject = "谢谢惠顾: "+ name + " ,共计 " + quantity + " 杯咖啡,喝死你!";
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setData(Uri.parse("mailto"));
+        intent.setType("*/*");
+
+//      Intent.EXTRA_SUBJECT  A constant string holding the desired subject line of a message.
+        intent.putExtra(Intent.EXTRA_SUBJECT,subject);
+
+//     Intent.EXTRA_TEXT  A string with the body of the email.
+        intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
 
     }
 
@@ -116,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
      * @param name            of customer
      * @return
      */
-
     private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String name) {
         String priceMessage = "Name : " + name;
         priceMessage += "\nAdd whipped Cream ? " + addWhippedCream;
