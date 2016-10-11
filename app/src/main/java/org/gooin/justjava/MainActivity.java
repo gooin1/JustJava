@@ -7,9 +7,10 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    int quantity = 0;
+    int quantity = 98;
     private static final String TAG = "MainActivity";
 
     @Override
@@ -53,14 +54,22 @@ public class MainActivity extends AppCompatActivity {
     //   数量增加 1
     public void increment(View view) {
         quantity++;
+        if (quantity > 100) {
+            Toast.makeText(this, "没有那么多的咖啡啦~", Toast.LENGTH_SHORT).show();
+            return ;
+        }
         displayQuantity(quantity);
     }
 
     //     数量减少 1
     public void decrement(View view) {
         quantity--;
+        if (quantity < 1) {
+            Toast.makeText(this, "至少买一杯哦~", Toast.LENGTH_SHORT).show();
+            return ;
+        }
         displayQuantity(quantity);
-//        displayPrice(3 * quantity);
+
     }
 
     //    显示提示消息,数量,价格等
