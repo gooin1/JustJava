@@ -14,9 +14,7 @@
         tools:context="org.gooin.justjava.MainActivity">
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            style="@style/editText"
             android:hint="Input Your Name Here"
             android:inputType="textCapWords"
             android:id="@+id/edit_text_name"/>
@@ -25,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:padding="16dp"
-            android:text="Toppings"
+            android:text="@string/toppings"
             android:textAllCaps="true"
             />
 
